@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Tmdb from "./Tmdb";
 import "./App.css";
-import Movierow from "./components/movierow.js";
-import FeaturedMovie from "./components/FeaturedMovie.js";
-import Header from "./components/header";
+import Movierow from "./components/Movierow/movierow.js";
+import FeaturedMovie from "./components/FeaturedMovie/FeaturedMovie.js";
+import Header from "./components/Header/header";
 
 export default () => {
   const [movieList, setMovieList] = useState([]);
@@ -12,11 +12,9 @@ export default () => {
 
   useEffect(() => {
     const loadAll = async () => {
-      //Pegando a lista TOTAL
       let list = await Tmdb.getHomeList();
       setMovieList(list);
 
-      //Pegando o Featured
       let originals = list.filter((i) => i.slug === "originals");
       let randomChosen = Math.floor(
         Math.random() * (originals[0].items.results.length - 1)
